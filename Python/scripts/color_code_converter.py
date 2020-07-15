@@ -1,8 +1,14 @@
+def rgb_formatter(value):
+    if n:= len(value) != 3:
+        raise NotImplemented(f"Expected iterable with 3 items, got {n}")
+    return f"rgb({value[0]}, {value[1]}, {value[2]})"
+
 def hex_to_rgb(value, formatted=True):
     """
     Converts hex code to rgb value.
     Enabling `formatted` gives CSS-valid output
     """
+
     if len(value) != 3 and len(value) != 6:
         raise NotImplemented("Invalid hex property passed")
     split_value = int(len(value) / 3)
@@ -15,7 +21,7 @@ def hex_to_rgb(value, formatted=True):
         result = [int(i, 16) for i in values]
     except ValueError:
         raise NotImplemented("Invalid hex property passed")
-    return f"rgb({result[0]}, {result[1]}, {result[2]})" if formatted else result
+    return rgb_formatter(result) if formatted else result
 
 """
 def true_shader(value, ratio):
@@ -23,4 +29,4 @@ def true_shader(value, ratio):
     for i in range(3):
         result.append(
 """
-#print(hex_to_rgb("222627", False))
+#print(hex_to_rgb("222627"))

@@ -1,5 +1,3 @@
-import time
-
 def hex_to_rgb(value, formatted=True):
     if len(value) != 3 and len(value) != 6:
         raise NotImplemented("Invalid hex property passed")

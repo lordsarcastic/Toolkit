@@ -1,4 +1,8 @@
 def hex_to_rgb(value, formatted=True):
+    """
+    Converts hex code to rgb value.
+    Enabling `formatted` gives CSS-valid output
+    """
     if len(value) != 3 and len(value) != 6:
         raise NotImplemented("Invalid hex property passed")
     split_value = int(len(value) / 3)

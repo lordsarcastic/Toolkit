@@ -1,0 +1,20 @@
+Clone repo
+Install dependencies with pipenv
+Install Gunicorn
+Test your server with `runserver` at port 0.0.0.0:8000 and visit it at <ip-address>:8000
+Run collectstatic
+Confirm it works and do whatever fixes is needed
+Ensure you have user `root` created and under group `www-data`(corresponds to what you'll see in *.service, *.socket, *.conf files)
+Let the user and group above own the repo and everything there
+Use `pipenv --venv` to get the virtual env directory
+Go to `/etc/systemd/system/` and create a gunicorn.service file (use ./gunicorn.service)
+Go to `/etc/systemd/system/` and create a gunicorn.socket file (use ./gunicorn.socket)
+Install Nginx
+Do the firewall stuff of `ufw allow 'Nginx'` (This is not accurate, Google it.)
+Ensure you have a nginx.conf at `/etc/nginx/` (use ./nginx.conf)
+Go to `/etc/nginx/sites-enabled/` and create a <your stuff>.conf file (use ./backend.conf)
+Use `nginx -t` to confirm your .conf files are nice
+Go to domain and do the Redirects for www and normal stuff
+Do letsencrypt certificate stuff
+Run `systemctl restart nginx`, `systemctl reload nginx`, `systemctl daemon-reload`, `systemctl restart gunicorn`
+Check the site at the url

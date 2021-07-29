@@ -1,0 +1,23 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/backend
+Environment=SECRET_KEY=sabiness.too.sabi.sabi.boy
+Environment=DB_NAME=db.sqlite3
+Environment=DB_ENGINE=django.db.backends.sqlite3
+Environment=HOST=api.emetricsuite.com
+Environment=DEBUG=0
+
+ExecStart=/root/.local/share/virtualenvs/backend-Lu9kB6KY/bin/gunicorn \
+	--access-logfile /var/log/nginx/backend.log \
+	--workers 3 \
+	--bind unix:/run/gunicorn.sock \
+	backend.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
